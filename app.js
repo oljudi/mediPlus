@@ -60,13 +60,15 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'MediPlus';
 
 
 
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/',require('./routes/private'))
+const admin = require('./routes/adminRoutes')
+app.use('/', admin)
 
 
 module.exports = app;
