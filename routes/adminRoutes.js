@@ -4,19 +4,29 @@ const router  = require('express').Router()
 const {
   adminView,
   consultoriosView,
-  createPost,
+  createConsulPost,
+  editConsulPost,
+  editConsulView,
+  deleteCons,
   doctoresView,
-  doctorPost,
-  
+  createDocPost,
+  editDocPost,
+  editDocView,
+  deleteDoc
 } = require('../controllers/adminController')
 
 router.get('/', adminView)
 
+//CRUD de Consultorios
 router.get('/consultorios', consultoriosView)
-
-router.post('/create', createPost)
-
+router.post('/consultorios/create', createConsulPost)
+router.get('/consultorios/edit/:id', editConsulView)
+router.post('/consultorios/edit/:id', editConsulPost)
+router.get('/consultorios/delete/:id', deleteCons)
+//CRUD de Doctores
 router.get('/doctores', doctoresView)
-router.post('/doctor/:id', doctorPost)
+router.get('/doctores/edit/:id', editDocView)
+router.post('/doctores/edit/:id', editDocPost)
+router.get('/doctores/delete/:id', deleteDoc)
 
 module.exports = router;

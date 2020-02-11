@@ -1,3 +1,4 @@
+{{#if edit}}
 <div class="row">
   <div class="col s9">
     <table class="table">
@@ -6,18 +7,85 @@
           <th scope="col">Id</th>
           <th scope="col">Tipo</th>
           <th scope="col">Precio</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
+        {{#if dtStatus}}
+          <p>Aun no hay consultorios</p>
+        {{else}}
+        {{#each consultorios as |consultorio|}}
         <tr>
-          <th scope="row">1</th>
-          <td></td>
-          <td></td>
+          <th>{{numero}}</th>
+          <td>{{tipoconsultorio}}</td>
+          <td>{{precio}}</td>
         </tr>
+        {{/each}}
+        {{/if}}
+      </tbody>
     </table>
+    <div id="editDiv"></div>
   </div>
   <div class="col s3">
-    <form action="/admin/create" method="POST">
+    <form action="/admin/consultorios/edit/{{cons._id}}" method="POST">
+      <h5>Editar Consultorio</h5>
+      <label>No: </label>
+      <input name="numero" type="number" min='0' step="1" value="{{cons.numero}}" required>
+      <label>Tipo de consultorio</label>
+      <select class="browser-default" name="tipoconsultorio" required>
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="terapia">Terapia</option>
+        <option value="medico">Medico</option>
+      </select>
+      <br>
+      <label>Precio: </label><input type="number" min='0' name="precio" value="{{cons.precio}}" required>
+      <br><br>
+      <label>Color: </label><input type="color" name="color" value="{{cons.color}}" required>
+      <br><br>
+      <button class="btn waves-effect waves-light" type="submit" name="action">Actualizar
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+</div>
+{{else}}
+<div class="row">
+  <div class="col s9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Precio</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if dtStatus}}
+          <p>Aun no hay consultorios</p>
+        {{else}}
+        {{#each consultorios as |consultorio|}}
+        <tr>
+          <th>{{numero}}</th>
+          <td>{{tipoconsultorio}}</td>
+          <td>{{precio}}</td>
+          <td>
+            <a href="/admin/consultorios/edit/{{_id}}"><i class="fas fa-edit"></i></a>
+          </td>
+          <td>
+            <a href="/admin/consultorios/delete/{{_id}}"><i class="fas fa-trash"></i></a>
+          </td>
+        </tr>
+        {{/each}}
+        {{/if}}
+      </tbody>
+    </table>
+    <div id="editDiv"></div>
+  </div>
+  <div class="col s3">
+    <form action="/admin/consultorios/create" method="POST">
       <h5>Agregar Consultorio</h5>
       <label>No: </label>
       <input name="numero" type="number" min='0' step="1" required>
@@ -38,3 +106,4 @@
     </form>
   </div>
 </div>
+{{/if}}
