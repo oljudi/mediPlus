@@ -1,9 +1,6 @@
 const Consul = require('../models/Office')
 const Doctor = require('../models/User')
  
-exports.adminView = (req,res,next) => {
-  res.render('adminViews/lobby')
-}
 // CRUD Consultorios
 exports.consultoriosView = async (req,res,next) => {
   const consultorios = await Consul.find()
@@ -57,4 +54,19 @@ exports.deleteDoc = async (req,res,next) => {
   await Doctor.findByIdAndDelete(id)
   res.redirect('/admin/doctores')
 }
-
+//CRUD Citas
+exports.adminView = (req,res,next) => {
+  res.render('adminViews/lobby')
+}
+exports.createCitasPost = (req,res,next) => {
+  
+}
+exports.editCitasView = (req,res,next) => {
+  
+}
+exports.editCitasPost = (req,res,next) => {
+  
+}
+exports.deleteCita = (req,res,next) => {
+  
+}

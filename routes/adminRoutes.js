@@ -9,13 +9,16 @@ const {
   editConsulView,
   deleteCons,
   doctoresView,
-  createDocPost,
   editDocPost,
   editDocView,
-  deleteDoc
+  deleteDoc,
+  citasView,
+  createCitasPost,
+  editCitasView,
+  editCitasPost,
+  deleteCita
 } = require('../controllers/adminController')
 
-router.get('/', adminView)
 
 //CRUD de Consultorios
 router.get('/consultorios', consultoriosView)
@@ -28,5 +31,11 @@ router.get('/doctores', doctoresView)
 router.get('/doctores/edit/:id', editDocView)
 router.post('/doctores/edit/:id', editDocPost)
 router.get('/doctores/delete/:id', deleteDoc)
+//CRUD de Citas
+router.get('/', adminView)
+router.post('/citas/create', createCitasPost)
+router.get('/citas/edit/:id', editCitasView)
+router.post('/citas/edit/:id', editCitasPost)
+router.get('/citas/delete/:id', deleteCita)
 
 module.exports = router;

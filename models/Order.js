@@ -1,4 +1,3 @@
-
 const {model,Schema}=require('mongoose')
 
 const officeSchema= new Schema({
