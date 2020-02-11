@@ -68,7 +68,7 @@ const index = require('./routes/index');
 app.use('/', index);
 app.use('/',require('./routes/private'))
 const admin = require('./routes/adminRoutes')
-app.use('/', admin)
+app.use('/admin', admin)
 
 
 module.exports = app;

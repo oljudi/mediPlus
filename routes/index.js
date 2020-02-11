@@ -3,7 +3,7 @@ const passport=require('../config/passport')
 const {loginGet,logout,signupPost}=require('../controllers/authControllers')
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index')})
+  res.redirect('/login')})
   .get('/login',loginGet)
   .post(
   "/login",
