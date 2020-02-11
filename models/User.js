@@ -3,9 +3,10 @@ const {model,Schema}=require('mongoose')
 const PLM= require('passport-local-mongoose')
 
 const userSchema= new Schema({
-  username: {
+  email: {
     type: String,
-    required: true
+    required: true,
+    unique:true
   },
   rol:{
     type:String,

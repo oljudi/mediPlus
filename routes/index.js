@@ -14,6 +14,7 @@ router.get('/', (req, res, next) => {
   })
 )
 .get('/logout',logout)
+.get('/signup',(req,res)=>res.render('signup'))
 
 module.exports = router;
 

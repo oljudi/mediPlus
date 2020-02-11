@@ -11,4 +11,4 @@ const officeSchema= new Schema({
   timestamps: true
 })
 
-module.exports = model("Office", officeSchema)
+module.exports = model("Order", officeSchema)

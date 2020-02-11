@@ -8,7 +8,7 @@ const officeSchema= new Schema({
   },
   tipoconsultorio:{
     type:String,
-    enum:['sencillo','equipado']
+    enum:['terapia','medico']
   },
   precio:{
     type:Number,
