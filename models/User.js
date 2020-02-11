@@ -23,7 +23,7 @@ const userSchema= new Schema({
   },
   confirmationCode:{
     unique: true, 
-    type: String,
+    type: String
   }
 },
 {

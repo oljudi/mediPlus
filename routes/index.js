@@ -1,6 +1,7 @@
 const router  = require('express').Router();
 const passport=require('../config/passport')
-const {loginGet,logout,signupPost}=require('../controllers/authControllers')
+const {loginGet,logout,signupPost,
+confirmGet,confirmPageGet}=require('../controllers/authControllers')
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index')})
@@ -23,6 +24,8 @@ router.get('/', (req, res, next) => {
     failureRedirect: "/login",
     failureFlash: true
   }))
+  .get("/confirm/:confirmationCode",confirmGet)
+  
 module.exports = router;
 
 

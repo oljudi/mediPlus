@@ -6,22 +6,22 @@ const hbs = require('hbs')
 const nodemailer = require('nodemailer')
 
 const welcomeTemplate = hbs.compile(
-  fs.readFileSync((__dirname, './views/template-email.hbs'), 'utf8')
+  fs.readFileSync((__dirname, './views/correo.hbs'), 'utf8')
 )
 
 const transporter = nodemailer.createTransport({
-  service: 'SendGrid',
-  auth: {
-    user: process.env.SENDGRID_USERNAME,
-    pass: process.env.SENDGRID_PASSWORD
+  service: 'Gmail',
+  auth:{
+    user: process.env.GMAIL_USERNAME,
+    pass: process.env.GMAIL_PASSWORD
   }
 })
 
 exports.confirmAccount = async (to, endpoint) => {
   return await transporter.sendMail({
-    from: "'Elon Musk' <elon@musk.com>",
+    from: "'MediPlus' <contacto@mediplus.com>",
     to,
-    subject: 'Confirm your account',
+    subject: 'Confirma tu cuenta',
     html: welcomeTemplate({ endpoint })
   })
 }
