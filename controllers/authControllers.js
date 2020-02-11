@@ -1,9 +1,13 @@
-const User = require ('../models/User')
+const User = require('../models/User')
 const {confirmAccount}=require("../config/nodemailer")
 
 exports.loginGet = (req, res) => {
   res.render("login", { message: "" });
 };
+
+exports.loginPost = (req, res) => {
+  res.redirect('/')
+}
 
 exports.logout = (req, res) => {
   req.logout();

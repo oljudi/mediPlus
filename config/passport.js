@@ -3,8 +3,10 @@ const passport = require('passport')
 
 passport.use(User.createStrategy())
 
+// serialize user object
 passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
 
+// deserialize user object
+passport.deserializeUser(User.deserializeUser())
 
 module.exports = passport 

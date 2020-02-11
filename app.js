@@ -8,8 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-const session = require("express-session")
-const passport = require("./config/passport")
+const session      = require("express-session")
+const passport     = require('./config/passport')
 
 
 
@@ -27,21 +27,24 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: false,
-    saveUninitialized: true
-  })
-)
-app.use(passport.initialize())
-app.use(passport.session())
-
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: false
+  })
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 
 // Express View engine setup
 
@@ -66,9 +69,9 @@ app.locals.title = 'MediPlus';
 
 const index = require('./routes/index');
 app.use('/', index);
-app.use('/',require('./routes/private'))
+app.use('/profile',require('./routes/private'))
 const admin = require('./routes/adminRoutes')
-app.use('/', admin)
+app.use('/admin', admin)
 
 
 module.exports = app;
