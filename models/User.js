@@ -15,13 +15,21 @@ const userSchema= new Schema({
   },
   tipoconsultorio:{
     type:String,
-    enum:['sencillo','equipado']
+    enum:['terapia','medico']
+  },
+  activo:{
+    type:Boolean,
+    default:false
+  },
+  confirmationCode:{
+    unique: true, 
+    type: String,
   }
 },
 {
   timestamps: true
 })
 
-userSchema.plugin(PLM, { usernameField: "username" })
+userSchema.plugin(PLM, { usernameField: "email" })
 
 module.exports = model("User", userSchema)

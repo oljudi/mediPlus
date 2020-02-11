@@ -1,6 +1,6 @@
 const router  = require('express').Router();
 const passport=require('../config/passport')
-const {loginGet,logout}=require('../controllers/authControllers')
+const {loginGet,logout,signupPost}=require('../controllers/authControllers')
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index')})
@@ -14,8 +14,15 @@ router.get('/', (req, res, next) => {
   })
 )
 .get('/logout',logout)
-.get('/signup',(req,res)=>res.render('signup'))
-
+.get('/signup',(_,res)=>res.render('signup'))
+.post('/signup',signupPost)
+.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/menu",
+    failureRedirect: "/login",
+    failureFlash: true
+  }))
 module.exports = router;
 
 

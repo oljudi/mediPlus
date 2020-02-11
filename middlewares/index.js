@@ -3,7 +3,7 @@ exports.isLoggedIn = (req,res,next) => {
 }
 
 exports.isActive = (req,res,next) => {
-  req.user.status=="Active" ? next() : res.send('Confirma tu correo')
+  req.user.activo ? next() : res.render('login',{message:'Confirma tu correo'})
 }
 
 exports.catchErrors = fn => (req,res,next) =>{
