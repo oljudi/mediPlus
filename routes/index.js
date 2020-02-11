@@ -4,7 +4,7 @@ const {loginGet,logout,signupPost,
 confirmGet, loginPost} = require('../controllers/authControllers')
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('index')})
+  res.redirect('/login')})
   .get('/login',loginGet)
 .get('/logout',logout)
 .get('/signup',(_,res)=>res.render('signup'))
