@@ -15,7 +15,7 @@ const officeSchema= new Schema({
     min:0,
     default:350
   },
-  color:String
+  color:String,
 },
 {
   timestamps: true

@@ -33,7 +33,6 @@ exports.signupPost = async (req, res) => {
   }
   
   let newuser= await User.register({email, tipoconsultorio,confirmationCode:token }, password);
-  console.log(newuser)
   let endpoint=`http://localhost:3000/confirm/${token}`
   await confirmAccount(email,endpoint)
   res.redirect("/login");
