@@ -1,25 +1,14 @@
-<script src="https://cdn.alloyui.com/3.0.1/aui/aui-min.js"></script>
+<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.common.css">
+<link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.light.css">
+<script type="text/javascript" src="https://cdn3.devexpress.com/jslib/19.2.6/js/dx.all.js"></script>
 <script src="/javascripts/scheduleJS/schedule.js"></script>
 
-<div class="row">
-  <div class="col s12">
-    <ul class="tabs">
-      {{#each consultorios as |consultorio|}}
-      <li class="tab col s3">
-        <a href="#{{numero}}" onclick="renderSchedule(cons{{numero}})">Consultorio {{numero}}</a>
-        </li>
-      {{/each}}
-    </ul>
-  </div>
-  {{#each consultorios as |consultorio|}}
-  <div id="{{numero}}" class="col s12">
-    <div id="wrapper">
-      <div id="cons{{numero}}"></div>
+<div class="demo-container">
+  <div id="scheduler"></div>
+  <div class="options">
+    <div class="caption">Use colors of:</div>
+    <div class="option">
+      <div id="resources-selector"></div>
     </div>
   </div>
-  {{/each}}
-
 </div>
-<script>
-
-</script>
