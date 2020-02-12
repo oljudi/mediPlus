@@ -88,12 +88,11 @@ const hoy= y+'-'+m+'-'+d;
 if (!dia) dia=hoy
 const citas=await Cita.find({day:dia}).populate('usuario').populate('office').sort({horario:1})
   
-  res.render('adminViews/lobby',{consultorios,doctores,horarios,hoy,citas})
+  res.render('adminViews/lobby',{edit:false,consultorios,doctores,horarios,hoy,citas})
 }
 exports.createCitasPost = async (req,res,next) => {
   const {usuario,office,day,horario}=req.body
   const cita= await Cita.find({office,day,horario})
-  console.log(cita[0])
    if (cita[0]==null) {
   await Cita.create({usuario,office,day,horario})
    }
@@ -120,16 +119,54 @@ exports.adminViewPost=async (req,res)=>{
   ]
 hoy=dia
 const citas=await Cita.find({day:dia}).populate('usuario').populate('office').sort({horario:1})
-  
-  res.render('adminViews/lobby',{consultorios,doctores,horarios,hoy,citas})
+  res.render('adminViews/lobby',{edit:false,consultorios,doctores,horarios,hoy,citas})
 
 }
-exports.editCitasView = (req,res,next) => {
-  
+exports.editCitasView = async(req,res,next) => {
+  const {id} = req.params
+  const consultorios = await Consul.find()
+  const doctores= await Doctor.find()
+  const horarios= [
+    '08:00 - 09:00',
+    '09:00 - 10:00',
+    '10:00 - 11:00',
+    '11:00 - 12:00',
+    '12:00 - 13:00',
+    '13:00 - 14:00',
+    '14:00 - 16:00',
+    '15:00 - 16:00',
+    '16:00 - 17:00',
+    '17:00 - 18:00',
+    '18:00 - 19:00',
+    '19:00 - 20:00'
+  ]
+ 
+  const cita = await Cita.findById(id)
+  let n=cita.day
+  y = n.getFullYear();
+//Mes
+m = n.getMonth() + 1;
+if (m.length=1) m='0'+m
+//Día
+d = n.getDate()+1;
+if (d<9) d='0'+d
+
+const hoy= y+'-'+m+'-'+d;
+  const citas=await Cita.find({day:cita.day}).populate('usuario').populate('office').sort({horario:1}) 
+  res.render('adminViews/lobby', {edit:true,consultorios,doctores,horarios,hoy,citas,cita})
 }
-exports.editCitasPost = (req,res,next) => {
+exports.editCitasPost = async(req,res,next) => {
+  const {id} = req.params
+  const update = {usuario,office,day,horario} = req.body
+  const cita= await Cita.find({office,day,horario})
+   if (cita[0]==null) {
+    await Cita.findByIdAndUpdate(id, update, {new: true})
+   }
   
+  res.redirect('/admin')
 }
-exports.deleteCita = (req,res,next) => {
-  
+exports.deleteCita = async (req,res,next) => {
+  const {id} = req.params
+  await Cita.findByIdAndDelete(id)
+  res.redirect('/admin')
 }
