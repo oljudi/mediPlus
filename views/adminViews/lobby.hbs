@@ -27,21 +27,33 @@
   <div class="col s3">
 <form action="/admin/citas/edit/{{cita._id}}" method="POST">
   <select class="browser-default"  name="usuario" required>
-    <option selected>Selecciona un doctor</option>
+    <option>Selecciona un doctor</option>
     {{#each doctores}}
+    {{#if select}}
+    <option value="{{_id}}" selected>{{nombre}}-{{tipoconsultorio}}</option>
+    {{else}}
     <option value="{{_id}}">{{nombre}}-{{tipoconsultorio}}</option>
+    {{/if}}
     {{/each}}
   </select>
   <select class="browser-default"  name="office" required>
-    <option selected>Selecciona un consultorio</option>
+    <option>Selecciona un consultorio</option>
     {{#each consultorios}}
+    {{#if select}}
+    <option value="{{_id}}" selected>{{numero}}-{{tipoconsultorio}}</option>
+    {{else}}
     <option value="{{_id}}">{{numero}}-{{tipoconsultorio}}</option>
+    {{/if}}
     {{/each}}
   </select>
   <input type="date" name="day" value='{{hoy}}' required>
   <select class="browser-default"  name="horario" required>
     {{#each horarios}}
-    <option value="{{this}}">{{this}}</option>
+    {{#if select}}
+    <option value="{{horario}}" selected>{{horario}}</option>
+    {{else}}
+    <option value="{{horario}}">{{horario}}</option>
+    {{/if}}
     {{/each}}
   </select>
   <button>Editar</button>

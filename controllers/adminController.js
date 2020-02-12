@@ -127,21 +127,33 @@ exports.editCitasView = async(req,res,next) => {
   const consultorios = await Consul.find()
   const doctores= await Doctor.find()
   const horarios= [
-    '08:00 - 09:00',
-    '09:00 - 10:00',
-    '10:00 - 11:00',
-    '11:00 - 12:00',
-    '12:00 - 13:00',
-    '13:00 - 14:00',
-    '14:00 - 16:00',
-    '15:00 - 16:00',
-    '16:00 - 17:00',
-    '17:00 - 18:00',
-    '18:00 - 19:00',
-    '19:00 - 20:00'
+    {horario:'08:00 - 09:00',select:false},
+    {horario:'09:00 - 10:00',select:false},
+    {horario:'10:00 - 11:00',select:false},
+    {horario:'11:00 - 12:00',select:false},
+    {horario:'12:00 - 13:00',select:false},
+    {horario:'13:00 - 14:00',select:false},
+    {horario:'14:00 - 16:00',select:false},
+    {horario:'15:00 - 16:00',select:false},
+    {horario:'16:00 - 17:00',select:false},
+    {horario:'17:00 - 18:00',select:false},
+    {horario:'18:00 - 19:00',select:false},
+    {horario:'19:00 - 20:00',select:false}
   ]
  
   const cita = await Cita.findById(id)
+  doctores.forEach(doctor=>{
+    if (doctor.id==cita.usuario)
+    {doctor.select=true}
+  })
+  consultorios.forEach(consultorio=>{
+    if (consultorio.id==cita.office)
+    {consultorio.select=true}
+  })
+  horarios.forEach(hora=>{
+    if (hora.horario==cita.horario)
+    {hora.select=true}
+  })
   let n=cita.day
   y = n.getFullYear();
 //Mes
