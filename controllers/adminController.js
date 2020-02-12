@@ -55,8 +55,9 @@ exports.deleteDoc = async (req,res,next) => {
   res.redirect('/admin/doctores')
 }
 //CRUD Citas
-exports.adminView = (req,res,next) => {
-  res.render('adminViews/lobby')
+exports.adminView = async (req,res,next) => {
+  const consultorios = await Consul.find()
+  res.render('adminViews/lobby', {consultorios})
 }
 exports.createCitasPost = (req,res,next) => {
   

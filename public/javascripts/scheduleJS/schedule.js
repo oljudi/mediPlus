@@ -1,26 +1,6 @@
-let boxSchedule = '#cons1Scheduler'
-renderSchedule(boxSchedule)
-
-function selectConsul(n) {
-  switch (n) {
-    case 1:
-      boxSchedule = '#cons1Scheduler'
-      renderSchedule(boxSchedule)
-      break
-    case 2:
-      boxSchedule = '#cons2Scheduler'
-      renderSchedule(boxSchedule)
-      break
-    case 3: 
-      boxSchedule = '#cons3Scheduler'
-      renderSchedule(boxSchedule)
-      break
-    case 4:
-      boxSchedule = '#cons4Scheduler'
-      renderSchedule(boxSchedule)
-      break
-  }
-}
+$(document).ready(function () {
+  $('.tabs').tabs()
+})
 
 function renderSchedule(box) {
   YUI().use(
@@ -49,3 +29,4 @@ function renderSchedule(box) {
     }
   )
 }
+
