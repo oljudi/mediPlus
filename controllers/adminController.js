@@ -1,5 +1,6 @@
 const Consul = require('../models/Office')
 const Doctor = require('../models/User')
+const Cita=require('../models/Order')
  
 // CRUD Consultorios
 exports.consultoriosView = async (req,res,next) => {
@@ -56,11 +57,72 @@ exports.deleteDoc = async (req,res,next) => {
 }
 //CRUD Citas
 exports.adminView = async (req,res,next) => {
+ let {dia}=req.body
   const consultorios = await Consul.find()
-  res.render('adminViews/lobby', {consultorios})
-}
-exports.createCitasPost = (req,res,next) => {
+  const doctores= await Doctor.find()
+  const horarios= [
+    '08:00 - 09:00',
+    '09:00 - 10:00',
+    '10:00 - 11:00',
+    '11:00 - 12:00',
+    '12:00 - 13:00',
+    '13:00 - 14:00',
+    '14:00 - 16:00',
+    '15:00 - 16:00',
+    '16:00 - 17:00',
+    '17:00 - 18:00',
+    '18:00 - 19:00',
+    '19:00 - 20:00'
+  ]
+  let n =  new Date();
+//Año
+y = n.getFullYear();
+//Mes
+m = n.getMonth() + 1;
+if (m.length=1) m='0'+m
+//Día
+d = n.getDate();
+if (d<9) d='0'+d
+
+const hoy= y+'-'+m+'-'+d;
+if (!dia) dia=hoy
+const citas=await Cita.find({day:dia}).populate('usuario').populate('office').sort({horario:1})
   
+  res.render('adminViews/lobby',{consultorios,doctores,horarios,hoy,citas})
+}
+exports.createCitasPost = async (req,res,next) => {
+  const {usuario,office,day,horario}=req.body
+  const cita= await Cita.find({office,day,horario})
+  console.log(cita[0])
+   if (cita[0]==null) {
+  await Cita.create({usuario,office,day,horario})
+   }
+   res.redirect('/admin/')
+}
+
+exports.adminViewPost=async (req,res)=>{
+  let {dia}=req.body
+  const consultorios = await Consul.find()
+  const doctores= await Doctor.find()
+  const horarios= [
+    '08:00 - 09:00',
+    '09:00 - 10:00',
+    '10:00 - 11:00',
+    '11:00 - 12:00',
+    '12:00 - 13:00',
+    '13:00 - 14:00',
+    '14:00 - 16:00',
+    '15:00 - 16:00',
+    '16:00 - 17:00',
+    '17:00 - 18:00',
+    '18:00 - 19:00',
+    '19:00 - 20:00'
+  ]
+hoy=dia
+const citas=await Cita.find({day:dia}).populate('usuario').populate('office').sort({horario:1})
+  
+  res.render('adminViews/lobby',{consultorios,doctores,horarios,hoy,citas})
+
 }
 exports.editCitasView = (req,res,next) => {
   

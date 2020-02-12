@@ -8,6 +8,7 @@ const userSchema= new Schema({
     required: true,
     unique:true
   },
+  nombre:String,
   rol:{
     type:String,
     enum:['doctor','admin'],

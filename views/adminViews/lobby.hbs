@@ -1,1 +1,54 @@
-<h1>no hay nada</h1>ue
+<h1>Agenda una cita</h1>
+<form action="/admin" method="POST"><input type="date" name="dia" value='{{hoy}}'>
+<button>Buscar</button>
+</form> 
+
+<div class="row">
+  <div class="col s9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Horario</th>
+          <th scope="col">Consultorio</th>
+          <th scope="col">Doctor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if dtStatus}}
+        <p>Aun no hay consultorios</p>
+        {{else}}
+        {{#each citas as |cita|}}
+        <tr bgcolor='{{office.color}}'>
+          <td >{{horario}}</th>
+          <td>{{office.numero}}</th>
+          <td>{{usuario.nombre}}</td>
+        </tr>
+        {{/each}}
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+<form action="/admin/citas/create" method="POST">
+  <select class="browser-default"  name="usuario" required>
+    <option selected>Selecciona un doctor</option>
+    {{#each doctores}}
+    <option value="{{_id}}">{{nombre}}-{{tipoconsultorio}}</option>
+    {{/each}}
+  </select>
+  <select class="browser-default"  name="office" required>
+    <option selected>Selecciona un consultorio</option>
+    {{#each consultorios}}
+    <option value="{{_id}}">{{numero}}-{{tipoconsultorio}}</option>
+    {{/each}}
+  </select>
+  <input type="date" name="day" value='{{hoy}}' required>
+  <select class="browser-default"  name="horario" required>
+    {{#each horarios}}
+    <option value="{{this}}">{{this}}</option>
+    {{/each}}
+  </select>
+  {{#if err1}}
+  {{err1}}
+  {{/if}}
+  <button>Agendar</button>
+</form>

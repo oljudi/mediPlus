@@ -16,7 +16,8 @@ const {
   createCitasPost,
   editCitasView,
   editCitasPost,
-  deleteCita
+  deleteCita,
+  adminViewPost
 } = require('../controllers/adminController')
 
 
@@ -33,6 +34,7 @@ router.post('/doctores/edit/:id', editDocPost)
 router.get('/doctores/delete/:id', deleteDoc)
 //CRUD de Citas
 router.get('/', adminView)
+router.post('/', adminViewPost)
 router.post('/citas/create', createCitasPost)
 router.get('/citas/edit/:id', editCitasView)
 router.post('/citas/edit/:id', editCitasPost)
