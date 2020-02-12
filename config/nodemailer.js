@@ -6,7 +6,7 @@ const hbs = require('hbs')
 const nodemailer = require('nodemailer')
 
 const welcomeTemplate = hbs.compile(
-  fs.readFileSync((__dirname, './views/correo.hbs'), 'utf8')
+  fs.readFileSync((__dirname, './views/mail/correo.hbs'), 'utf8')
 )
 
 const transporter = nodemailer.createTransport({
@@ -21,7 +21,7 @@ exports.confirmAccount = async (to, endpoint) => {
   return await transporter.sendMail({
     from: "'MediPlus' <contacto@mediplus.com>",
     to,
-    subject: 'Confirma tu cuenta',
+    subject: 'Confirma tu cuenta - MediPlus',
     html: welcomeTemplate({ endpoint })
   })
 }

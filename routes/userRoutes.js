@@ -1,6 +1,6 @@
 const router  = require('express').Router();
 
-const {usuariosGet,consultoriosGet}=require('../controllers/privateControllers')
+const {usuariosGet,consultoriosGet}=require('../controllers/userControllers')
 
 router.get('/consultorios',consultoriosGet)
 .get('/usuarios',usuariosGet)

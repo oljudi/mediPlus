@@ -11,20 +11,27 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/stylesheets/style.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <nav>
+  <nav class=" blue darken-3">
     <div class="nav-wrapper">
-    <a class="brand-logo" href="/"><i class="fas fa-clinic-medical"></i> MediPlus</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <a class="brand-logo" href="/"><i class="fas fa-clinic-medical"></i> MediPlus</a>
+      <a href="/" data-target="mainNavbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
         <li><a href="/admin/consultorios">Consultorios</a></li>
         <li><a href="/admin/doctores">Doctores</a></li>
       </ul>
     </div>
   </nav>
-  <br>
+
+  <ul class="sidenav" id="mainNavbar">
+    <li><a href="/admin/consultorios">Consultorios</a></li>
+    <li><a href="/admin/doctores">Doctores</a></li>
+  </ul>
+
   {{{body}}}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="/javascripts/script.js"></script>

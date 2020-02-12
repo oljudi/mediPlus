@@ -1,24 +1,35 @@
 const router  = require('express').Router();
 const passport = require('../config/passport')
-const {loginGet,logout,signupPost,
-confirmGet, loginPost} = require('../controllers/authControllers')
-/* GET home page */
-router.get('/', (req, res, next) => {
-  res.redirect('/login')})
-  .get('/login',loginGet)
-.get('/logout',logout)
-.get('/signup',(_,res)=>res.render('signup'))
-.post('/signup',signupPost)
-.post('/login', passport.authenticate('local'), loginPost)
+const {
+  homeView,
+  loginGet,
+  signupView,
+  signupPost,
+  profileView,
+  confirmGet,
+  logout,
+  } = require('../controllers/authControllers')
 
+router.get('/', homeView)
 
-// router.post(
-//   "/login",
-//   passport.authenticate("local", {
-//     successRedirect: "/",
-//     failureRedirect: "/signup",
-//   }))
+router.get('/login',loginGet)
+router.post(
+  '/login',
+  passport.authenticate('local',
+  {
+   successRedirect: '/profile',
+   failureRedirect: '/logIn',
+   failureFlash: true,
+   successFlash: true
+  })
+)
 
+router.post('/signup',signupPost)
+router.get('/signup',signupView)
+
+router.get('/profile', profileView)
+
+router.get('/logout',logout)
 
 router.get("/confirm/:confirmationCode",confirmGet)
   
