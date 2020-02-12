@@ -12,14 +12,15 @@
     <div class="col s8">
       <br>
       <form action="/signup" method="POST">
-        <label>Email: </label><input type="text" name="email" id="email" placeholder="ejemplo@mail.com">
+        <label>Email </label><input type="email" name="email" id="email" laceholder="ejemplo@mail.com">
+        <label>Nombre </label><input type="text" name="nombre" id="nombre" placeholder="Gregory House">
         <label>Tipo de consultorio</label>
         <select name="tipoconsultorio" required>
           <option value="" disabled selected>Selecciona una opción</option>
           <option value="terapia">Terapia</option>
           <option value="medico">Medico</option>
         </select>
-        <label>Contraseña: </label>
+        <label>Contraseña </label>
         <input type="password" name="password" id="password" placeholder="Contraseña">
         <button type="submit" class="waves-effect waves-light btn-large blue darken-4 pulse">Registrate</button>
         <p>No olvides validar tu correo antes de ingresar por primera vez.</p>

@@ -1,1 +1,61 @@
-<h1>Bienvenido {{user.nombre}}</h1>
+<div class="container">
+  <div class="row">
+    <div class="col s4">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{user.photoURL}}" width="400px" height="200px">
+          <span class="card-title"><strong>{{user.nombre}}</strong></span>
+          <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4">
+            <i class="material-icons right">add</i>
+          </a>
+        </div>
+        <div class="card-content">
+          <p>{{user.email}}</p>
+          <p>{{user.rol}}</p>
+          <p>Consultorio: {{user.tipoconsultorio}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col s8">
+      <h5>Resumen de Consultas</h5>
+      <table>
+        <thead>
+          <tr>
+            <th># Consultorio</th>
+            <th>Precio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alvin</td>
+            <td>$0.87</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div class="col s12">
+      <div class="row">
+        <div class="col s4">
+          {{#if admin}}
+          <a href="/admin" class="btn waves-effect waves-light light-blue darken-4">Pagina Principal
+            <i class="material-icons right">home</i>
+          </a>
+          {{else}}
+          <a href='/doctor' class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Pagina Principal
+            <i class="material-icons right">home</i>
+          </a>
+          {{/if}}
+        </div>
+        <div class="col s4">
+          <a class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Crear Cita
+            <i class="material-icons right">note_add</i>
+          </a>
+        </div>
+        <div class="col s4">
+          Dueda Total:
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

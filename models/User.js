@@ -8,6 +8,11 @@ const userSchema= new Schema({
     required: true,
     unique:true
   },
+  nombre:String,
+  photoURL:{
+    type: String,
+    default: 'http://lorempixel.com/400/200/people'
+  },
   rol:{
     type:String,
     enum:['doctor','admin'],

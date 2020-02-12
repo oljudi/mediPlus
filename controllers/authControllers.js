@@ -8,8 +8,8 @@ exports.loginGet = (req, res) => res.render("authViews/login", { message: req.fl
 exports.signupView = (_,res) => res.render('authViews/signup')
 
 exports.signupPost = async (req, res) => {
-  const { tipoconsultorio, email, password } = req.body;
-  if (email === "" || password === "") {
+  const { tipoconsultorio, email, password, nombre } = req.body;
+  if (email === "" || password === "" || nombre === "") {
     res.render("authViews/signup", {
       message: "Debes llenar todos los campos"
     });
@@ -23,7 +23,7 @@ exports.signupPost = async (req, res) => {
   for (let i = 0; i < 25; i++) {
     token += characters[Math.floor(Math.random() * characters.length )];
   }
-  await User.register({email, tipoconsultorio,confirmationCode:token }, password);
+  await User.register({email, tipoconsultorio, confirmationCode:token, nombre }, password);
   const endpoint = `http://localhost:3000/confirm/${token}`
   await confirmAccount(email,endpoint)
   res.redirect("/login");
@@ -31,13 +31,15 @@ exports.signupPost = async (req, res) => {
 
 exports.confirmGet = async ( req, res, next)=> {
   const {confirmationCode} = req.params
-  const user = await User.findOneAndUpdate({confirmationCode}, { activo: true}, {new: true})
+  await User.findOneAndUpdate({confirmationCode}, { activo: true}, {new: true})
   res.render('authViews/confirmacion')
 }
 
 exports.profileView = async (req,res,next) => {
   const user = req.user
-  res.render('authViews/profile', {user})
+  let admin = false
+  if(user.rol === 'admin') admin=true
+  res.render('authViews/profile', {user, admin})
 }
 
 exports.logout = (req, res) => {
