@@ -10,6 +10,7 @@ const {
   demoView,
   logout,
   } = require('../controllers/authControllers')
+const {isActive,isLoggedIn,checkRole} =require('../middlewares/index')
 
 router.get('/', homeView)
 
@@ -28,7 +29,7 @@ router.post(
 router.post('/signup',signupPost)
 router.get('/signup',signupView)
 
-router.get('/profile', profileView)
+router.get('/profile',isLoggedIn,isActive, profileView)
 
 router.get('/medikalTeam', demoView)
 

@@ -37,6 +37,18 @@
         {{else}}
         <option value="{{_id}}">{{nombre}}-{{tipoconsultorio}}</option>
         {{/if}}
+        {{#each citas as |cita|}}
+        <tr bgcolor='{{office.color}}'>
+          <td >{{horario}}</th>
+          <td>{{office.numero}}</th>
+          <td>{{usuario.nombre}}</td>
+          <td>
+            <a href="/admin/citas/edit/{{_id}}"><i class="fas fa-edit" style="color:black;"></i></a>
+          </td>
+          <td>
+            <a href="/admin/citas/delete/{{_id}}"><i class="fas fa-trash" style="color:black;"></i></a>
+          </td>
+        </tr>
         {{/each}}
       </select>
       <br>
