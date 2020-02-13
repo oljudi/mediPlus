@@ -10,6 +10,8 @@ const logger       = require('morgan');
 const path         = require('path');
 const session      = require("express-session")
 const passport     = require('./config/passport')
+const flash        = require('connect-flash')
+
 
 
 
@@ -32,6 +34,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(flash())
 
 app.use(
   session({
@@ -69,9 +72,8 @@ app.locals.title = 'MediPlus';
 
 const index = require('./routes/index');
 app.use('/', index);
-app.use('/profile',require('./routes/private'))
-const admin = require('./routes/adminRoutes')
-app.use('/admin', admin)
+app.use('/',require('./routes/userRoutes'))
+app.use('/admin', require('./routes/adminRoutes'))
 
 
 module.exports = app;
