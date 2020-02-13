@@ -74,6 +74,7 @@ const index = require('./routes/index');
 app.use('/', index);
 app.use('/',require('./routes/userRoutes'))
 app.use('/admin', require('./routes/adminRoutes'))
+app.use('/doctor', require('./routes/doctorRoutes'))
 
 
 module.exports = app;
