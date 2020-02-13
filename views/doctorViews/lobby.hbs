@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         {{#if dtStatus}}
-        <p>Aun no hay consultorios</p>
+        <p>Aun no hay citas</p>
         {{else}}
         {{#each citas as |cita|}}
         <tr bgcolor='{{office.color}}'>
@@ -25,17 +25,8 @@
     </table>
   </div>
   <div class="col s3">
-<form action="/admin/citas/edit/{{cita._id}}" method="POST">
-  <select class="browser-default"  name="usuario" required>
-    <option disabled>Selecciona un doctor</option>
-    {{#each doctores}}
-    {{#if select}}
-    <option value="{{_id}}" selected>{{nombre}}-{{tipoconsultorio}}</option>
-    {{else}}
-    <option value="{{_id}}">{{nombre}}-{{tipoconsultorio}}</option>
-    {{/if}}
-    {{/each}}
-  </select>
+<form action="/doctor/citas/edit/{{cita._id}}" method="POST">
+  
   <select class="browser-default"  name="office" required>
     <option disabled>Selecciona un consultorio</option>
     {{#each consultorios}}
@@ -61,9 +52,11 @@
 </div>
 
 {{else}}
-<form action="/admin" method="POST"><input type="date" name="dia" value='{{hoy}}'>
-<button>Buscar</button>
+<form action="/doctor" method="POST">
+  <input type="date" name="dia" value='{{hoy}}'>
+  <button>Buscar</button>
 </form> 
+
 
 <div class="row">
   <div class="col s9">
@@ -79,19 +72,24 @@
       </thead>
       <tbody>
         {{#if dtStatus}}
-        <p>Aun no hay consultorios</p>
+        <p>Aun no hay citas</p>
         {{else}}
         {{#each citas as |cita|}}
         <tr bgcolor='{{office.color}}'>
           <td >{{horario}}</th>
           <td>{{office.numero}}</th>
           <td>{{usuario.nombre}}</td>
+          {{#if edita}}
           <td>
-            <a href="/admin/citas/edit/{{_id}}"><i class="fas fa-edit"></i></a>
+            <a href="/doctor/citas/edit/{{_id}}"><i class="fas fa-edit"></i></a>
           </td>
           <td>
-            <a href="/admin/citas/delete/{{_id}}"><i class="fas fa-trash"></i></a>
+            <a href="/doctor/citas/delete/{{_id}}"><i class="fas fa-trash"></i></a>
           </td>
+          {{else}}
+          <td></td>
+          <td></td>
+          {{/if}}
         </tr>
         {{/each}}
         {{/if}}
@@ -99,13 +97,8 @@
     </table>
   </div>
   <div class="col s3">
-<form action="/admin/citas/create" method="POST">
-  <select class="browser-default"  name="usuario" required>
-    <option selected disabled>Selecciona un doctor</option>
-    {{#each doctores}}
-    <option value="{{_id}}">{{nombre}}-{{tipoconsultorio}}</option>
-    {{/each}}
-  </select>
+<form action="/doctor/citas/create" method="POST">
+
   <select class="browser-default"  name="office" required>
     <option selected disabled>Selecciona un consultorio</option>
     {{#each consultorios}}
