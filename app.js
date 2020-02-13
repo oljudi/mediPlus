@@ -12,7 +12,7 @@ const session      = require("express-session")
 const passport     = require('./config/passport')
 const flash        = require('connect-flash')
 
-
+const {isActive,isLoggedIn,checkRole} =require('./middlewares/index')
 
 
 mongoose
@@ -73,8 +73,8 @@ app.locals.title = 'MediPlus';
 const index = require('./routes/index');
 app.use('/', index);
 app.use('/',require('./routes/userRoutes'))
-app.use('/admin', require('./routes/adminRoutes'))
-app.use('/doctor', require('./routes/doctorRoutes'))
+app.use('/admin',isLoggedIn,isActive,checkRole('admin'), require('./routes/adminRoutes'))
+app.use('/doctor',isLoggedIn,isActive,checkRole('doctor'), require('./routes/doctorRoutes'))
 
 
 module.exports = app;

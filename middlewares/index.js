@@ -10,7 +10,7 @@ exports.catchErrors = fn => (req,res,next) =>{
   fn(req,res,next).catch(err => res.render(err)) 
 }
 exports.checkRole = role => (req, res, next) => {
-  if (req.isAuthenticated() && req.user.role === role) {
+  if (req.isAuthenticated() && req.user.rol === role) {
     next();
   } else {
     res.redirect("/");
