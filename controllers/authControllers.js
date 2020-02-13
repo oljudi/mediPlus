@@ -42,6 +42,8 @@ exports.profileView = async (req,res,next) => {
   res.render('authViews/profile', {user, admin})
 }
 
+exports.demoView = async (req,res,next) => res.render('medikalView', {message: req.flash('error')})
+
 exports.logout = (req, res) => {
   req.logout();
   res.redirect("/");

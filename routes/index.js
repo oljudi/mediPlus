@@ -7,6 +7,7 @@ const {
   signupPost,
   profileView,
   confirmGet,
+  demoView,
   logout,
   } = require('../controllers/authControllers')
 
@@ -28,6 +29,8 @@ router.post('/signup',signupPost)
 router.get('/signup',signupView)
 
 router.get('/profile', profileView)
+
+router.get('/medikalTeam', demoView)
 
 router.get('/logout',logout)
 

@@ -12,26 +12,36 @@
         <div class="card-content">
           <p>{{user.email}}</p>
           <p>{{user.rol}}</p>
-          <p>Consultorio: {{user.tipoconsultorio}}</p>
+          <p>Tipo de Consultorio: {{user.tipoconsultorio}}</p>
         </div>
       </div>
     </div>
     <div class="col s8">
-      <h5>Resumen de Consultas</h5>
-      <table>
-        <thead>
-          <tr>
-            <th># Consultorio</th>
-            <th>Precio</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>$0.87</td>
-          </tr>
-        </tbody>
-      </table>
+      <h5>Resumen Tecnico</h5>
+      <blockquote>
+        {{#if user.title}}
+        {{user.title}}
+        {{else}}
+        Titulo Medico - Agrega información
+        {{/if}}
+      </blockquote>
+      {{#if user.user.specialization}}
+      {{#each user.specialization}}
+      <div class="chip">
+        {{name}}
+      </div>
+      {{/each}}
+      {{else}}
+      <div class="chip">
+        Agrega tus especialidades
+      </div>
+      {{/if}}
+      {{#if user.resume}}
+        {{user.resume}}
+      {{else}}
+        <p>Agrega un resumen de tus habilidades, experiencias, etc</p>
+      {{/if}}
+      <a class="right" href=""><i class="fas fa-user-edit fa-2x" style="color: yellowgreen;"></i></a>
     </div>
     <br>
     <div class="col s12">
@@ -42,7 +52,8 @@
             <i class="material-icons right">home</i>
           </a>
           {{else}}
-          <a href='/doctor' class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Pagina Principal
+          <a href='/doctor' class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Pagina
+            Principal
             <i class="material-icons right">home</i>
           </a>
           {{/if}}
