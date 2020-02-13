@@ -24,7 +24,7 @@ exports.signupPost = async (req, res) => {
     token += characters[Math.floor(Math.random() * characters.length )];
   }
   await User.register({email, tipoconsultorio, confirmationCode:token, nombre }, password);
-  const endpoint = `http://localhost:3000/confirm/${token}`
+  const endpoint = `https://mediplus2020.herokuapp.com/confirm/${token}`
   await confirmAccount(email,endpoint)
   res.redirect("/login");
 }
