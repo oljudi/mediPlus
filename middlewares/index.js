@@ -1,5 +1,13 @@
 exports.isLoggedIn = (req,res,next) => {
-  req.isAuthenticated() ? next() : res.redirect('/')
+  
+  if (req.isAuthenticated()) {
+    req.app.locals.isAuth = true
+    next()
+  }else {
+    req.app.locals.isAuth = false
+    res.redirect('/')
+  }
+   
 }
 
 exports.isActive = (req,res,next) => {
@@ -11,8 +19,16 @@ exports.catchErrors = fn => (req,res,next) =>{
 }
 exports.checkRole = role => (req, res, next) => {
   if (req.isAuthenticated() && req.user.rol === role) {
+    if (req.user.admin){
+      req.app.locals.isAdmin = true
+    }else {req.app.locals.isAdmin = false}
     next();
   } else {
-    res.redirect("/");
+    if(req.isAuthenticated()){
+      res.redirect("/profile");
+    }
+    else {
+      res.redirect("/");
+    }
   }
 };

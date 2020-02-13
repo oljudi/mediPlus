@@ -37,6 +37,7 @@
         {{else}}
         <option value="{{_id}}">{{nombre}}-{{tipoconsultorio}}</option>
         {{/if}}
+        {{/each}}
         {{#each citas as |cita|}}
         <tr bgcolor='{{office.color}}'>
           <td >{{horario}}</th>

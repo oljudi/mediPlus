@@ -21,8 +21,8 @@
       <a class="brand-logo" href="/"><i class="fas fa-clinic-medical"></i> MediPlus</a>
       <a href="/" data-target="mainNavbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        {{#if user}}
-          {{#if user.admin}}
+        {{#if isAuth}}
+          {{#if isAdmin}}
         <li><a href="/admin/consultorios">Consultorios</a></li>
         <li><a href="/admin/doctores">Doctores</a></li>
           {{/if}}

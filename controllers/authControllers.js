@@ -46,5 +46,7 @@ exports.demoView = async (req,res,next) => res.render('medikalView', {message: r
 
 exports.logout = (req, res) => {
   req.logout();
+  req.app.locals.isAuth = false
+  req.app.locals.isAdmin = false
   res.redirect("/");
 }
