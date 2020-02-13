@@ -13,6 +13,10 @@ const userSchema= new Schema({
     type: String,
     default: 'http://lorempixel.com/400/200/people'
   },
+  admin: {
+    type: Boolean,
+    default: false
+  },
   rol:{
     type:String,
     enum:['doctor','admin'],

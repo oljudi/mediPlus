@@ -1,71 +1,69 @@
-<div class="container">
-  <div class="row">
-    <div class="col s4">
-      <div class="card">
-        <div class="card-image">
-          <img src="{{user.photoURL}}" width="400px" height="200px">
-          <span class="card-title"><strong>{{user.nombre}}</strong></span>
-          <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4">
-            <i class="material-icons right">add</i>
-          </a>
-        </div>
-        <div class="card-content">
-          <p>{{user.email}}</p>
-          <p>{{user.rol}}</p>
-          <p>Tipo de Consultorio: {{user.tipoconsultorio}}</p>
-        </div>
+<div class="row">
+  <div class="col s4">
+    <div class="card">
+      <div class="card-image">
+        <img src="{{user.photoURL}}" width="400px" height="200px">
+        <span class="card-title"><strong>{{user.nombre}}</strong></span>
+        <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4">
+          <i class="material-icons right">add</i>
+        </a>
+      </div>
+      <div class="card-content">
+        <p>{{user.email}}</p>
+        <p>{{user.rol}}</p>
+        <p>Tipo de Consultorio: {{user.tipoconsultorio}}</p>
       </div>
     </div>
-    <div class="col s8">
-      <h5>Resumen Tecnico</h5>
-      <blockquote>
-        {{#if user.title}}
-        {{user.title}}
+  </div>
+  <div class="col s8">
+    <h5>Resumen Tecnico</h5>
+    <blockquote>
+      {{#if user.title}}
+      {{user.title}}
+      {{else}}
+      Titulo Medico - Agrega información
+      {{/if}}
+    </blockquote>
+    {{#if user.user.specialization}}
+    {{#each user.specialization}}
+    <div class="chip">
+      {{name}}
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="chip">
+      Agrega tus especialidades
+    </div>
+    {{/if}}
+    {{#if user.resume}}
+    {{user.resume}}
+    {{else}}
+    <p>Agrega un resumen de tus habilidades, experiencias, etc</p>
+    {{/if}}
+    <a class="right" href=""><i class="fas fa-user-edit fa-2x" style="color: yellowgreen;"></i></a>
+  </div>
+  <br>
+  <div class="col s12">
+    <div class="row">
+      <div class="col s4">
+        {{#if admin}}
+        <a href="/admin" class="btn waves-effect waves-light light-blue darken-4">Pagina Principal
+          <i class="material-icons right">home</i>
+        </a>
         {{else}}
-        Titulo Medico - Agrega información
+        <a href='/doctor' class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Pagina
+          Principal
+          <i class="material-icons right">home</i>
+        </a>
         {{/if}}
-      </blockquote>
-      {{#if user.user.specialization}}
-      {{#each user.specialization}}
-      <div class="chip">
-        {{name}}
       </div>
-      {{/each}}
-      {{else}}
-      <div class="chip">
-        Agrega tus especialidades
+      <div class="col s4">
+        <a class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Crear Cita
+          <i class="material-icons right">note_add</i>
+        </a>
       </div>
-      {{/if}}
-      {{#if user.resume}}
-        {{user.resume}}
-      {{else}}
-        <p>Agrega un resumen de tus habilidades, experiencias, etc</p>
-      {{/if}}
-      <a class="right" href=""><i class="fas fa-user-edit fa-2x" style="color: yellowgreen;"></i></a>
-    </div>
-    <br>
-    <div class="col s12">
-      <div class="row">
-        <div class="col s4">
-          {{#if admin}}
-          <a href="/admin" class="btn waves-effect waves-light light-blue darken-4">Pagina Principal
-            <i class="material-icons right">home</i>
-          </a>
-          {{else}}
-          <a href='/doctor' class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Pagina
-            Principal
-            <i class="material-icons right">home</i>
-          </a>
-          {{/if}}
-        </div>
-        <div class="col s4">
-          <a class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Crear Cita
-            <i class="material-icons right">note_add</i>
-          </a>
-        </div>
-        <div class="col s4">
-          Dueda Total:
-        </div>
+      <div class="col s4">
+        Dueda Total:
       </div>
     </div>
   </div>

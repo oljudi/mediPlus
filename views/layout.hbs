@@ -21,8 +21,16 @@
       <a class="brand-logo" href="/"><i class="fas fa-clinic-medical"></i> MediPlus</a>
       <a href="/" data-target="mainNavbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
+        {{#if user}}
+          {{#if user.admin}}
         <li><a href="/admin/consultorios">Consultorios</a></li>
         <li><a href="/admin/doctores">Doctores</a></li>
+          {{/if}}
+        <li><a href="/logout">LogOut</a></li>
+        {{else}}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Signup</a></li>
+        {{/if}}
       </ul>
     </div>
   </nav>
@@ -31,8 +39,9 @@
     <li><a href="/admin/consultorios">Consultorios</a></li>
     <li><a href="/admin/doctores">Doctores</a></li>
   </ul>
-
-  {{{body}}}
+  <div class="container">
+    {{{body}}}
+  </div>
 
   <footer class="page-footer grey darken-3" style="position: fixed; left: 0; bottom: 0; width: 100%;">
     <div class="footer-copyright">
