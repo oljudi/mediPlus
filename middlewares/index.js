@@ -32,3 +32,11 @@ exports.checkRole = role => (req, res, next) => {
     }
   }
 };
+exports.checkRoleProfile = () => (req, res, next) => {
+  if (req.user.rol === 'admin') {
+
+      req.app.locals.isAdmin = true
+    } else {req.app.locals.isAdmin = false}
+    next();
+
+};

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,8 +22,13 @@
       <ul class="right hide-on-med-and-down">
         {{#if isAuth}}
           {{#if isAdmin}}
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/admin">Admin</a></li>
         <li><a href="/admin/consultorios">Consultorios</a></li>
         <li><a href="/admin/doctores">Doctores</a></li>
+          {{else}}
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/doctor">Doctor</a></li>
           {{/if}}
         <li><a href="/logout">LogOut</a></li>
         {{else}}
@@ -43,7 +47,7 @@
     {{{body}}}
   </div>
 
-  <footer class="page-footer grey darken-3" style="position: fixed; left: 0; bottom: 0; width: 100%;">
+  <footer class="page-footer grey darken-3">
     <div class="footer-copyright">
       <div class="container">
         A project by: <a href=""><i class="fab fa-github"></i>@AleOchoa</a> & <a href=""><i
