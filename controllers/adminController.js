@@ -42,7 +42,7 @@ exports.editDocView = async (req,res,next) => {
   const {id} = req.params
   const doctores = await Doctor.find({rol: 'doctor'})
   const doc = await Doctor.findById(id)
-  res.render('adminViews/doctores/view', {edit:true, doc, doctores})
+  res.render('adminViews/doctores/view', {edit:true, doc, doctores, consul: ['Terapia','Medico','Psicologia','Odontologia', 'Oftamologia']})
 }
 exports.editDocPost = async (req,res,next) => {
   const {id} = req.params

@@ -5,7 +5,7 @@ exports.homeView = (req, res, next) => res.render('index')
 
 exports.loginGet = (req, res) => res.render("authViews/login", { message: req.flash('error') })
 
-exports.signupView = (_,res) => res.render('authViews/signup',{ consul: ['-','Terapia','Medico','Psicologia','Odontologia', 'Oftamologia']})
+exports.signupView = (_,res) => res.render('authViews/signup',{ consul: ['Terapia','Medico','Psicologia','Odontologia', 'Oftamologia']})
 
 exports.signupPost = async (req, res) => {
   const { tipoconsultorio, email, password, nombre } = req.body;

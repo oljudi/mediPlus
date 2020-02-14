@@ -13,7 +13,7 @@ const {
   // demoView,
   logout
   } = require('../controllers/authControllers')
-const {isActive,isLoggedIn,checkRoleProfile} =require('../middlewares/index')
+const {isActive,isLoggedIn,checkRoleProfile,checkConfirm} =require('../middlewares/index')
 
 router.get('/', homeView)
 

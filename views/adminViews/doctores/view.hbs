@@ -43,8 +43,9 @@
       <label>Tipo de consultorio</label>
       <select class="browser-default" name="tipoconsultorio" required>
         <option value="" disabled selected>Selecciona una opción</option>
-        <option value="terapia">Terapia</option>
-        <option value="medico">Medico</option>
+        {{#each consul as |opt|}}
+         <option value="{{opt}}">{{opt}}</option>
+        {{/each}}
       </select>
       <br><br>
       <div class="row">

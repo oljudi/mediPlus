@@ -26,7 +26,6 @@
   </div>
   <div class="col s3">
     <form action="/doctor/citas/edit/{{cita._id}}" method="POST">
-
       <select class="browser-default" name="office" required>
         <option disabled>Selecciona un consultorio</option>
         {{#each consultorios}}
