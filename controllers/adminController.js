@@ -160,7 +160,7 @@ exports.editCitasView = async(req,res,next) => {
 m = n.getMonth() + 1;
 if (m.length=1) m='0'+m
 //Día
-d = n.getDate()+1;
+d = n.getDate();
 if (d<9) d='0'+d
 
 const hoy= y+'-'+m+'-'+d;
