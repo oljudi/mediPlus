@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         {{#if dtStatus}}
-          <p>Aun no hay consultorios</p>
+        <p>Aun no hay consultorios</p>
         {{else}}
         {{#each consultorios as |consultorio|}}
         <tr>
@@ -29,23 +29,26 @@
   </div>
   <div class="col s3">
     <form action="/admin/consultorios/edit/{{cons._id}}" method="POST">
-      <h5>Editar Consultorio</h5>
+      <h5 class="center-align">Editar Consultorio</h5>
       <label>No: </label>
       <input name="numero" type="number" min='0' step="1" value="{{cons.numero}}" required>
       <label>Tipo de consultorio</label>
       <select class="browser-default" name="tipoconsultorio" required>
         <option value="" disabled selected>Selecciona una opción</option>
-        <option value="terapia">Terapia</option>
-        <option value="medico">Medico</option>
+        {{#each tipoConsul as |opt|}}
+        <option value="{{opt}}">{{opt}}</option>
+        {{/each}}
       </select>
       <br>
       <label>Precio: </label><input type="number" min='0' name="precio" value="{{cons.precio}}" required>
       <br><br>
       <label>Color: </label><input type="color" name="color" value="{{cons.color}}" required>
       <br><br>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Actualizar
-        <i class="material-icons right">send</i>
-      </button>
+      <div class="row">
+        <div class="col s6 offset-s4">
+          <button class="waves-effect waves-light btn deep-orange darken-4">Editar</button>
+        </div>
+      </div>
     </form>
   </div>
 </div>
@@ -64,7 +67,7 @@
       </thead>
       <tbody>
         {{#if dtStatus}}
-          <p>Aun no hay consultorios</p>
+        <p>Aun no hay consultorios</p>
         {{else}}
         {{#each consultorios as |consultorio|}}
         <tr>
@@ -72,10 +75,10 @@
           <td>{{tipoconsultorio}}</td>
           <td>{{precio}}</td>
           <td>
-            <a href="/admin/consultorios/edit/{{_id}}"><i class="fas fa-edit"></i></a>
+            <a href="/admin/consultorios/edit/{{_id}}" style="color: #d5bd19;"><i class="fas fa-edit"></i></a>
           </td>
           <td>
-            <a href="/admin/consultorios/delete/{{_id}}"><i class="fas fa-trash"></i></a>
+            <a href="/admin/consultorios/delete/{{_id}}" style="color: gray;"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
         {{/each}}
@@ -86,23 +89,26 @@
   </div>
   <div class="col s3">
     <form action="/admin/consultorios/create" method="POST">
-      <h5>Agregar Consultorio</h5>
+      <h5 class="center-align">Agregar Consultorio</h5>
       <label>No: </label>
       <input name="numero" type="number" min='0' step="1" required>
       <label>Tipo de consultorio</label>
       <select class="browser-default" name="tipoconsultorio" required>
         <option value="" disabled selected>Selecciona una opción</option>
-        <option value="terapia">Terapia</option>
-        <option value="medico">Medico</option>
+        {{#each tipoConsul as |opt|}}
+        <option value="{{opt}}">{{opt}}</option>
+        {{/each}}
       </select>
       <br>
       <label>Precio: </label><input type="number" min='0' name="precio" required>
       <br><br>
       <label>Color: </label><input type="color" name="color" required>
       <br><br>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-        <i class="material-icons right">send</i>
-      </button>
+      <div class="row">
+        <div class="col s6 offset-s4">
+          <button class="waves-effect waves-light btn deep-orange darken-4">Crear</button>
+        </div>
+      </div>
     </form>
   </div>
 </div>

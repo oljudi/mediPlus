@@ -1,5 +1,4 @@
 {{#if edit}}
-<br>
 <div class="row">
   <div class="col s9">
     <table class="table">
@@ -40,7 +39,7 @@
         {{/each}}
         {{#each citas as |cita|}}
         <tr bgcolor='{{office.color}}'>
-          <td >{{horario}}</th>
+          <td>{{horario}}</th>
           <td>{{office.numero}}</th>
           <td>{{usuario.nombre}}</td>
           <td>
@@ -83,86 +82,87 @@
       </div>
     </form>
   </div>
+</div>
 
-  {{else}}
-  <br>
-  <div class="row">
-    <div class="col s9">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Horario</th>
-            <th scope="col">Consultorio</th>
-            <th scope="col">Doctor</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#if dtStatus}}
-          <p>Aun no hay consultorios</p>
-          {{else}}
-          {{#each citas as |cita|}}
-          <tr bgcolor='{{office.color}}'>
-            <td>{{horario}}</th>
-            <td>{{office.numero}}</th>
-            <td>{{usuario.nombre}}</td>
-            <td>
-              <a href="/admin/citas/edit/{{_id}}"><i class="fas fa-edit fa-1x" style="color: #322d2d"></i></a>
-            </td>
-            <td>
-              <a href="/admin/citas/delete/{{_id}}"><i class="fas fa-trash fa-1x" style="color: #322d2d;"></i></a>
-            </td>
-          </tr>
-          {{/each}}
-          {{/if}}
-        </tbody>
-      </table>
-    </div>
-    <div class="col s3">
-      <form action="/admin" method="POST">
-        <div class="row">
-          <div class="col s7">
-            <input type="date" name="dia" value='{{hoy}}'>
-          </div>
-          <div class="col s5">
-            <button class="waves-effect waves-light btn deep-orange darken-4">Buscar</button>
-          </div>
-        </div>
-      </form>
-      <h5 class="center-align">Crear una cita</h5>
-      <br>
-      <form action="/admin/citas/create" method="POST">
-        <select class="browser-default" name="usuario" required>
-          <option selected disabled>Selecciona un doctor</option>
-          {{#each doctores}}
-          <option value="{{_id}}">{{nombre}} - {{tipoconsultorio}}</option>
-          {{/each}}
-        </select>
-        <br>
-        <select class="browser-default" name="office" required>
-          <option selected disabled>Selecciona un consultorio</option>
-          {{#each consultorios}}
-          <option value="{{_id}}">{{numero}} - {{tipoconsultorio}}</option>
-          {{/each}}
-        </select>
-        <br>
-        <input type="date" name="day" value='{{hoy}}' required>
-        <br><br>
-        <select class="browser-default" name="horario" required>
-          {{#each horarios}}
-          <option value="{{this}}">{{this}}</option>
-          {{/each}}
-        </select>
-        <br>
-        {{#if err1}}
-        {{err1}}
+{{else}}
+<br>
+<div class="row">
+  <div class="col s9">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Horario</th>
+          <th scope="col">Consultorio</th>
+          <th scope="col">Doctor</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if dtStatus}}
+        <p>Aun no hay consultorios</p>
+        {{else}}
+        {{#each citas as |cita|}}
+        <tr bgcolor='{{office.color}}'>
+          <td>{{horario}}</th>
+          <td>{{office.numero}}</th>
+          <td>{{usuario.nombre}}</td>
+          <td>
+            <a href="/admin/citas/edit/{{_id}}"><i class="fas fa-edit fa-1x" style="color: #322d2d"></i></a>
+          </td>
+          <td>
+            <a href="/admin/citas/delete/{{_id}}"><i class="fas fa-trash fa-1x" style="color: #322d2d;"></i></a>
+          </td>
+        </tr>
+        {{/each}}
         {{/if}}
-        <div class="row">
-          <div class="col s6 offset-s4">
-            <button class="waves-effect waves-light btn deep-orange darken-4">Agendar</button>
-          </div>
+      </tbody>
+    </table>
+  </div>
+  <div class="col s3">
+    <form action="/admin" method="POST">
+      <div class="row">
+        <div class="col s7">
+          <input type="date" name="dia" value='{{hoy}}'>
         </div>
-      </form>
-    </div>
-    {{/if}}
+        <div class="col s5">
+          <button class="waves-effect waves-light btn deep-orange darken-4">Buscar</button>
+        </div>
+      </div>
+    </form>
+    <h5 class="center-align">Crear una cita</h5>
+    <br>
+    <form action="/admin/citas/create" method="POST">
+      <select class="browser-default" name="usuario" required>
+        <option selected disabled>Selecciona un doctor</option>
+        {{#each doctores}}
+        <option value="{{_id}}">{{nombre}} - {{tipoconsultorio}}</option>
+        {{/each}}
+      </select>
+      <br>
+      <select class="browser-default" name="office" required>
+        <option selected disabled>Selecciona un consultorio</option>
+        {{#each consultorios}}
+        <option value="{{_id}}">{{numero}} - {{tipoconsultorio}}</option>
+        {{/each}}
+      </select>
+      <br>
+      <input type="date" name="day" value='{{hoy}}' required>
+      <br><br>
+      <select class="browser-default" name="horario" required>
+        {{#each horarios}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+      <br>
+      {{#if err1}}
+      {{err1}}
+      {{/if}}
+      <div class="row">
+        <div class="col s6 offset-s4">
+          <button class="waves-effect waves-light btn deep-orange darken-4">Agendar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  {{/if}}

@@ -1,4 +1,5 @@
 {{#if edit}}
+<br>
 <div class="row">
   <div class="col s9">
     <table class="table">
@@ -36,7 +37,7 @@
   </div>
   <div class="col s3">
     <form action="/admin/doctores/edit/{{doc._id}}" method="POST">
-      <h5>Editar Doctor</h5>
+      <h5 class="center-align">Editar Usuario</h5>
       <label>Email: </label>
       <input name="email" type="email" value="{{doc.email}}" disabled required>
       <label>Tipo de consultorio</label>
@@ -46,14 +47,16 @@
         <option value="medico">Medico</option>
       </select>
       <br><br>
-      <button class="btn waves-effect waves-light" type="submit" name="action">Actualizar
-        <i class="material-icons right">send</i>
-      </button>
+      <div class="row">
+        <div class="col s6 offset-s4">
+          <button class="waves-effect waves-light btn deep-orange darken-4">Editar</button>
+        </div>
+      </div>
     </form>
   </div>
 </div>
 {{else}}
-<h4>Usuarios Actuales</h4>
+<h4>Usuarios</h4>
 <div class="row">
   <div class="col s12">
     <table class="table">
@@ -84,10 +87,10 @@
             {{/if}}
           </td>
           <td>
-            <a href="/admin/doctores/edit/{{_id}}"><i class="fas fa-edit"></i></a>
+            <a href="/admin/doctores/edit/{{_id}}" style="color: #d5bd19;"><i class="fas fa-edit"></i></a>
           </td>
           <td>
-            <a href="/admin/doctores/delete/{{_id}}"><i class="fas fa-trash"></i></a>
+            <a href="/admin/doctores/delete/{{_id}}" style="color: gray;"><i class="fas fa-trash"></i></a>
           </td>
         </tr>
         {{/each}}

@@ -7,7 +7,7 @@ exports.consultoriosView = async (req,res,next) => {
   const consultorios = await Consul.find()
   let dtStatus = true
   if(consultorios) dtStatus = false
-  res.render('adminViews/consultorio/view', {consultorios, dtStatus})
+  res.render('adminViews/consultorio/view', {consultorios, dtStatus, tipoConsul: ['Terapia','Medico','Psicologia','Odontologia', 'Oftamologia']})
 }
 exports.createConsulPost = async (req,res,next) => {
   const {numero,tipoconsultorio,precio,color} = req.body

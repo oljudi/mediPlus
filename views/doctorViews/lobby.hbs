@@ -15,7 +15,7 @@
         {{else}}
         {{#each citas as |cita|}}
         <tr bgcolor='{{office.color}}'>
-          <td >{{horario}}</th>
+          <td>{{horario}}</th>
           <td>{{office.numero}}</th>
           <td>{{usuario.nombre}}</td>
         </tr>
@@ -25,39 +25,35 @@
     </table>
   </div>
   <div class="col s3">
-<form action="/doctor/citas/edit/{{cita._id}}" method="POST">
-  
-  <select class="browser-default"  name="office" required>
-    <option disabled>Selecciona un consultorio</option>
-    {{#each consultorios}}
-    {{#if select}}
-    <option value="{{_id}}" selected>{{numero}}-{{tipoconsultorio}}</option>
-    {{else}}
-    <option value="{{_id}}">{{numero}}-{{tipoconsultorio}}</option>
-    {{/if}}
-    {{/each}}
-  </select>
-  <input type="date" name="day" value='{{hoy}}' required>
-  <select class="browser-default"  name="horario" required>
-    {{#each horarios}}
-    {{#if select}}
-    <option value="{{horario}}" selected>{{horario}}</option>
-    {{else}}
-    <option value="{{horario}}">{{horario}}</option>
-    {{/if}}
-    {{/each}}
-  </select>
-  <button>Guardar cambios</button>
-</form>
+    <form action="/doctor/citas/edit/{{cita._id}}" method="POST">
+
+      <select class="browser-default" name="office" required>
+        <option disabled>Selecciona un consultorio</option>
+        {{#each consultorios}}
+        {{#if select}}
+        <option value="{{_id}}" selected>{{numero}}-{{tipoconsultorio}}</option>
+        {{else}}
+        <option value="{{_id}}">{{numero}}-{{tipoconsultorio}}</option>
+        {{/if}}
+        {{/each}}
+      </select>
+      <input type="date" name="day" value='{{hoy}}' required>
+      <select class="browser-default" name="horario" required>
+        {{#each horarios}}
+        {{#if select}}
+        <option value="{{horario}}" selected>{{horario}}</option>
+        {{else}}
+        <option value="{{horario}}">{{horario}}</option>
+        {{/if}}
+        {{/each}}
+      </select>
+      <button>Guardar cambios</button>
+    </form>
+  </div>
 </div>
 
 {{else}}
-<form action="/doctor" method="POST">
-  <input type="date" name="dia" value='{{hoy}}'>
-  <button>Buscar</button>
-</form> 
-
-
+<br>
 <div class="row">
   <div class="col s9">
     <table class="table">
@@ -76,7 +72,7 @@
         {{else}}
         {{#each citas as |cita|}}
         <tr bgcolor='{{office.color}}'>
-          <td >{{horario}}</th>
+          <td>{{horario}}</th>
           <td>{{office.numero}}</th>
           <td>{{usuario.nombre}}</td>
           {{#if edita}}
@@ -97,24 +93,42 @@
     </table>
   </div>
   <div class="col s3">
-<form action="/doctor/citas/create" method="POST">
-
-  <select class="browser-default"  name="office" required>
-    <option selected disabled>Selecciona un consultorio</option>
-    {{#each consultorios}}
-    <option value="{{_id}}">{{numero}}-{{tipoconsultorio}}</option>
-    {{/each}}
-  </select>
-  <input type="date" name="day" value='{{hoy}}' required>
-  <select class="browser-default"  name="horario" required>
-    {{#each horarios}}
-    <option value="{{this}}">{{this}}</option>
-    {{/each}}
-  </select>
-  {{#if err1}}
-  {{err1}}
+    <form action="/doctor" method="POST">
+      <div class="row">
+        <div class="col s7">
+          <input type="date" name="dia" value='{{hoy}}'>
+        </div>
+        <div class="col s5">
+          <button class="waves-effect waves-light btn deep-orange darken-4">Buscar</button>
+        </div>
+      </div>
+    </form>
+    <h5 class="center-align">Crear una cita</h5>
+    <br>
+    <form action="/doctor/citas/create" method="POST">
+      <select class="browser-default" name="office" required>
+        <option selected disabled>Selecciona un consultorio</option>
+        {{#each consultorios}}
+        <option value="{{_id}}">{{numero}}-{{tipoconsultorio}}</option>
+        {{/each}}
+      </select>
+      <br>
+      <input type="date" name="day" value='{{hoy}}' required>
+      <br><br>
+      <select class="browser-default" name="horario" required>
+        {{#each horarios}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+      <br>
+      {{#if err1}}
+      {{err1}}
+      {{/if}}
+      <div class="row">
+        <div class="col s6 offset-s4">
+          <button class="waves-effect waves-light btn deep-orange darken-4">Agendar</button>
+        </div>
+      </div>
+    </form>
+  </div>
   {{/if}}
-  <button>Agendar</button>
-</form>
-</div>
-{{/if}}
