@@ -5,24 +5,32 @@
   <div class="row">
     <div class="col s4">
       <h3>Registrate</h3>
-      <br><br><br>
- 
     </div>
     <div class="col s8">
       <br>
       <form action="/signup" method="POST">
         <label>Email </label><input type="email" name="email" id="email" laceholder="ejemplo@mail.com">
         <label>Nombre </label><input type="text" name="nombre" id="nombre" placeholder="Gregory House">
+        <br><br>
         <label>Tipo de consultorio</label>
         <select name="tipoconsultorio" required>
           <option value="" disabled selected>Selecciona una opción</option>
-          <option value="terapia">Terapia</option>
-          <option value="medico">Medico</option>
+          {{#each consul as |opt|}}
+          <option value="{{opt}}">{{opt}}</option>
+          {{/each}}
         </select>
+        <br>
         <label>Contraseña </label>
         <input type="password" name="password" id="password" placeholder="Contraseña">
-        <button type="submit" class="waves-effect waves-light btn-large blue darken-4 pulse">Registrate</button>
-        <p>No olvides validar tu correo antes de ingresar por primera vez.</p>
+        <br><br>
+        <div class="right">
+          <button type="submit" class="waves-effect btn-large blue darken-4 right-align pulse">
+            <i class="large material-icons">send</i>
+          </button>
+        </div>
+        <blockquote>
+          No olvides validar tu correo antes de ingresar por primera vez.
+        </blockquote>
       </form>
     </div>
   </div>

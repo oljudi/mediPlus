@@ -17,23 +17,23 @@
 <body>
   <nav class=" blue darken-3">
     <div class="nav-wrapper">
-      <a class="brand-logo" href="/"><i class="fas fa-clinic-medical"></i> MediPlus</a>
+      <a class="brand-logo center" href="/"><i class="fas fa-clinic-medical"></i> MediPlus</a>
       <a href="/" data-target="mainNavbar" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         {{#if isAuth}}
           {{#if isAdmin}}
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/admin">Admin</a></li>
-        <li><a href="/admin/consultorios">Consultorios</a></li>
+        <li><a href="/admin"><i class="material-icons">home</i></a></li>
         <li><a href="/admin/doctores">Doctores</a></li>
+        <li><a href="/admin/consultorios">Consultorios</a></li>
+        <li><a href="/profile"><i class="material-icons">person</i></a></li>
           {{else}}
-        <li><a href="/profile">Profile</a></li>
         <li><a href="/doctor">Doctor</a></li>
+        <li><a href="/profile"><i class="material-icons">person</i></a></li>
           {{/if}}
-        <li><a href="/logout">LogOut</a></li>
+        <li><a href="/logout"><i class="material-icons left">cancel_presentation</i></a></li>
         {{else}}
-        <li><a href="/login">Login</a></li>
-        <li><a href="/signup">Signup</a></li>
+        <li><a href="/login"><i class="material-icons left">input</i>Login</a></li>
+        <li><a href="/signup"><i class="material-icons left">person_add</i>Signup</a></li>
         {{/if}}
       </ul>
     </div>
@@ -50,8 +50,7 @@
   <footer class="page-footer grey darken-3">
     <div class="footer-copyright">
       <div class="container">
-        A project by: <a href=""><i class="fab fa-github"></i>@AleOchoa</a> & <a href=""><i
-            class="fab fa-github"></i>@oljudi</a>
+        A project by: <a href="https://github.com/AleOchoa"><i class="fab fa-github"></i>@AleOchoa</a> & <a href="https://github.com/oljudi"><i class="fab fa-github"></i>@oljudi</a>
         <p class="grey-text text-lighten-4 right">© 2020 Jan - IronHack Bootcamp</p>
       </div>
     </div>

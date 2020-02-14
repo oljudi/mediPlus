@@ -24,8 +24,11 @@ const userSchema= new Schema({
   },
   tipoconsultorio:{
     type:String,
-    enum:['terapia','medico']
+    enum:['Terapia','Medico','Psicologia','Odontologia', 'Oftamologia']
   },
+  title: String,
+  specialization: String,
+  resume: String,
   activo:{
     type:Boolean,
     default:false

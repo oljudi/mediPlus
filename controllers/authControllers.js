@@ -5,7 +5,7 @@ exports.homeView = (req, res, next) => res.render('index')
 
 exports.loginGet = (req, res) => res.render("authViews/login", { message: req.flash('error') })
 
-exports.signupView = (_,res) => res.render('authViews/signup')
+exports.signupView = (_,res) => res.render('authViews/signup',{ consul: ['Terapia','Medico','Psicologia','Odontologia', 'Oftamologia']})
 
 exports.signupPost = async (req, res) => {
   const { tipoconsultorio, email, password, nombre } = req.body;
@@ -42,7 +42,17 @@ exports.profileView = async (req,res,next) => {
   res.render('authViews/profile', {user, admin})
 }
 
-exports.demoView = async (req,res,next) => res.render('medikalView', {message: req.flash('error')})
+exports.profilePost = async (req,res,next) => {
+  const {id} = req.params
+  const {title, specialization, resume} = req.body
+  const {secure_url: photoURL} = req.file
+  await User.findByIdAndUpdate( 
+    {_id: id}, 
+    {title, specialization, resume, photoURL},
+    {new: true}
+    )
+  res.redirect('/profile')
+}
 
 exports.logout = (req, res) => {
   req.logout();
@@ -50,3 +60,5 @@ exports.logout = (req, res) => {
   req.app.locals.isAdmin = false
   res.redirect("/");
 }
+
+exports.demoView = async (req,res,next) => res.render('medikalView', {message: req.flash('error')})

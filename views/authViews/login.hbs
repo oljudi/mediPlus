@@ -1,44 +1,35 @@
 <div class="parallax-container">
-    <div class="parallax"><img src="https://wallpapercave.com/wp/wp3487924.jpg"></div>
+  <div class="parallax"><img src="https://wallpapercave.com/wp/wp3487924.jpg"></div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col s4">
-            <h3>Bienvenido</h3>
-            <br><br><br>
-            <spam>¿Necesitas cuenta?</spam>
-            <spam><a href="/signup">Crea tu cuenta</a></spam>
-        </div>
-        <div class="col s8">
-            <br>
-            <form action="/login" method="POST">
-                <input type="text" name="email" id="email" placeholder="Email">
-                <br><br>
-                <input type="password" name="password" id="password" placeholder="Contraseña">
-                <br><br>
-                <button type="submit" class="waves-effect waves-light btn-large blue darken-4 pulse">LogIn</button>
-                {{#if message}}
-                {{message}}
-                {{/if}}
-            </form>
-        </div>
+  <div class="row">
+    <div class="col s4">
+      <h3>Bienvenido</h3>
+      <br><br><br>
+      <spam>¿Aun no tienes cuenta?</spam>
+      <spam><a href="/signup">Crea tu cuenta</a></spam>
     </div>
+    <div class="col s8">
+      <br>
+      <form action="/login" method="POST">
+        <input type="text" name="email" id="email" placeholder="Email">
+        <br><br>
+        <input type="password" name="password" id="password" placeholder="Contraseña">
+        <br><br>
+        <div class="right">
+          <button type="submit" class="waves-effect btn-large blue darken-4 right-align pulse">
+            <i class="large material-icons">send</i>
+          </button>
+        </div>
+        {{#if message}}
+        <blockquote>
+          {{message}} - Intenta de nuevo
+        </blockquote>
+        {{/if}}
+      </form>
+    </div>
+  </div>
 </div>
 <div class="parallax-container">
-    <div class="parallax"><img src="https://wallpapercave.com/wp/wp3487949.jpg" ></div>
+  <div class="parallax"><img src="https://wallpapercave.com/wp/wp3487949.jpg"></div>
 </div>
-<footer class="page-footer grey darken-3">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <p class="grey-text text-lighten-4">A project by:</p>
-        <p class="grey-text text-lighten-4">@AleOchoa & @oljudi</p>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-      © 2020 - IronHack Bootcamp
-    </div>
-  </div>
-</footer>

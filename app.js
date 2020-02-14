@@ -16,7 +16,10 @@ const {isActive,isLoggedIn,checkRole} =require('./middlewares/index')
 
 
 mongoose
-  .connect(process.env.DB, {useNewUrlParser: true,useUnifiedTopology:true})
+  .connect(process.env.DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology:true,
+  })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -70,9 +73,8 @@ app.locals.title = 'MediPlus';
 
 
 
-const index = require('./routes/index');
-app.use('/', index);
-app.use('/',require('./routes/userRoutes'))
+const index = require('./routes/index')
+app.use('/', index)
 app.use('/admin',isLoggedIn,isActive,checkRole('admin'), require('./routes/adminRoutes'))
 app.use('/doctor',isLoggedIn,isActive,checkRole('doctor'), require('./routes/doctorRoutes'))
 

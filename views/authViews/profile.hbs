@@ -4,9 +4,6 @@
       <div class="card-image">
         <img src="{{user.photoURL}}" width="400px" height="200px">
         <span class="card-title"><strong>{{user.nombre}}</strong></span>
-        <a class="btn-floating halfway-fab waves-effect waves-light blue darken-4">
-          <i class="material-icons right">add</i>
-        </a>
       </div>
       <div class="card-content">
         <p>{{user.email}}</p>
@@ -24,27 +21,30 @@
       Titulo Medico - Agrega información
       {{/if}}
     </blockquote>
-    {{#if user.user.specialization}}
-    {{#each user.specialization}}
+    {{#if user.specialization}}
     <div class="chip">
-      {{name}}
+    {{user.specialization}}
     </div>
-    {{/each}}
     {{else}}
     <div class="chip">
       Agrega tus especialidades
     </div>
     {{/if}}
+    <br><br>
     {{#if user.resume}}
-    {{user.resume}}
+    <h6>Presentación:</h6>
+    <blockquote>
+      {{user.resume}}
+    </blockquote>
     {{else}}
     <p>Agrega un resumen de tus habilidades, experiencias, etc</p>
     {{/if}}
-    <a class="right" href=""><i class="fas fa-user-edit fa-2x" style="color: yellowgreen;"></i></a>
   </div>
   <br>
   <div class="col s12">
     <div class="row">
+      <div class="col s4">
+      </div>
       <div class="col s4">
         {{#if admin}}
         <a href="/admin" class="btn waves-effect waves-light light-blue darken-4">Pagina Principal
@@ -58,13 +58,41 @@
         {{/if}}
       </div>
       <div class="col s4">
-        <a class="btn waves-effect waves-light light-blue darken-4" type="submit" name="action">Crear Cita
-          <i class="material-icons right">note_add</i>
+        <a class="btn waves-effect waves-light light-blue darken-4 modal-trigger" href="#profileModal">Editar Perfil
+          <i class="material-icons right">person_outline</i>
         </a>
-      </div>
-      <div class="col s4">
-        Dueda Total:
       </div>
     </div>
   </div>
+</div>
+<!-- Modal Structure -->
+<div id="profileModal" class="modal">
+  <form action="/profile/{{user._id}}" method="POST" enctype="multipart/form-data"> 
+    <div class="modal-content">
+      <h4>Editar Perfil</h4>
+      <label>Titulo Medico:</label>
+      <input type="text" name="title" placeholder="Medico Cirujano" required>
+      <label>Especialidad:</label>
+      <input type="text" name="specialization" placeholder="Cirujia de Corazón" required>
+      <br>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>File</span>
+          <input type="file" name="img">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Cambia la imagen de perfil" required>
+        </div>
+      </div>
+      <div class="input-field">
+        <label for="resume">Resumen</label>
+        <textarea id="resume" name="resume" class="materialize-textarea" data-length="200" required></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="waves-effect btn blue darken-4 right-align">
+        <i class="large material-icons">send</i>
+      </button>
+    </div>
+  </form>
 </div>

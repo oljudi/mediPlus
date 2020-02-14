@@ -4,4 +4,6 @@ $(document).ready(function(){
   $('.sidenav').sidenav();
   $('select').formSelect();
   $('.chips').chips();
+  $('.modal').modal();
+  $('input#input_text, textarea#resume').characterCounter();
 });
